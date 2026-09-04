@@ -1,0 +1,10 @@
+<nav class="nav" data-open="false" aria-label="Primary">
+  <a class="nav__logo" href="/">Claire Liu</a>
+  <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav__links">
+    <a href="/projects/"{{ if hasPrefix .RelPermalink "/projects" }} aria-current="page"{{ end }}>Projects</a>
+    <a href="/blog/"{{ if hasPrefix .RelPermalink "/blog" }} aria-current="page"{{ end }}>Blog</a>
+    <a href="/#contact">Contact</a>
+    <a href="{{ .Site.Params.linkedin }}" rel="noopener">LinkedIn</a>
+  </div>
+</nav>

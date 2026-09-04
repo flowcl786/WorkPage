@@ -1,0 +1,43 @@
+/* ================================================================
+   tokens.css — the ONLY place colours, fonts and spacing live.
+   Change a value here and it propagates everywhere. (Design Guideline §4/§5)
+   ================================================================ */
+:root {
+  /* light palette */
+  --bg:          #F4F8F5;
+  --bg-alt:      #EBF2ED;
+  --card:        #FFFFFF;
+  --text:        #24352B;
+  --text-muted:  #4A6357;
+  --accent:      #3F6B4F;   /* moss — links, active, eyebrow, diagram emphasis */
+  --secondary:   #7FA38B;   /* sage — LINES ONLY in light mode, never text */
+  --border:      #C9DDD1;
+
+  /* type */
+  --font-display: 'Klee One', 'Iansui', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-body:    'Hanken Grotesk', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* spacing / shape */
+  --measure: 64ch;
+  --radius: 6px;
+  --radius-sm: 4px;
+  --wrap: 1120px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:         #132018;
+    --bg-alt:     #1B2D22;
+    --card:       #1A2B21;
+    --text:       #EAF3ED;
+    --text-muted: #9AB8A4;
+    --accent:     #5FA875;
+    --secondary:  #8FB89B;
+    --border:     #2D4A36;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#132018; --bg-alt:#1B2D22; --card:#1A2B21; --text:#EAF3ED;
+  --text-muted:#9AB8A4; --accent:#5FA875; --secondary:#8FB89B; --border:#2D4A36;
+}

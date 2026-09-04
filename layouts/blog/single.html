@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="wrap">
+  <div class="page-head">
+    <span class="crumb"><a href="/blog/">← Blog</a></span>
+    <h1>{{ .Title }}</h1>
+    <p class="lede"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>{{ with .Params.tags }} · {{ delimit . ", " }}{{ end }}</p>
+  </div>
+  <div class="layout" style="grid-template-columns:200px minmax(0,660px)">
+    <aside class="side">{{ if .TableOfContents }}<nav class="toc" aria-label="On this page">{{ .TableOfContents }}</nav>{{ end }}</aside>
+    <article class="prose">{{ .Content }}</article>
+  </div>
+</div>
+{{ end }}

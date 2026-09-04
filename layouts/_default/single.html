@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div class="wrap">
+  <div class="page-head">
+    <span class="crumb"><a href="/#background">← Background</a></span>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lede }}<p class="lede">{{ . }}</p>{{ end }}
+  </div>
+  <div class="layout">
+    <aside class="side">
+      <dl>
+        {{ with .Params.where }}<div><dt>Where</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.when }}<div><dt>When</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.role }}<div><dt>Role</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.stack }}<div><dt>Stack</dt><dd>{{ delimit . " · " }}</dd></div>{{ end }}
+        {{ with .Params.scale }}<div><dt>Scale</dt><dd>{{ . }}</dd></div>{{ end }}
+      </dl>
+      {{ if .TableOfContents }}<nav class="toc" aria-label="On this page">{{ .TableOfContents }}</nav>{{ end }}
+    </aside>
+    <article class="prose">{{ .Content }}</article>
+  </div>
+</div>
+{{ end }}

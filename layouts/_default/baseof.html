@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head>{{ partial "head.html" . }}</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  {{ if .Site.Params.draftBanner }}<div class="draft">{{ .Site.Params.draftBanner }}</div>{{ end }}
+  {{ partial "nav.html" . }}
+  <main id="main">{{ block "main" . }}{{ end }}</main>
+  {{ partial "footer.html" . }}
+  <script src="/scripts/site.js" defer></script>
+</body>
+</html>

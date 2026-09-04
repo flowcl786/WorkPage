@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="wrap">
+  <div class="page-head">
+    <span class="crumb"><a href="/projects/">← Projects</a></span>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lede }}<p class="lede">{{ . }}</p>{{ end }}
+  </div>
+  <div class="layout">
+    <aside class="side">
+      <dl>
+        {{ with .Params.where }}<div><dt>Where</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.when }}<div><dt>When</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.role }}<div><dt>Role</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.stack }}<div><dt>Stack</dt><dd>{{ delimit . " · " }}</dd></div>{{ end }}
+        {{ with .Params.scale }}<div><dt>Scale</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.code }}<div><dt>Code</dt><dd>{{ . }}</dd></div>{{ end }}
+      </dl>
+      {{ if .TableOfContents }}<nav class="toc" aria-label="On this page">{{ .TableOfContents }}</nav>{{ end }}
+    </aside>
+    <article class="prose">{{ .Content }}</article>
+  </div>
+  {{ $all := sort (where .Site.RegularPages "Section" "projects") "Params.order" }}
+  <div class="pager">
+    <div>{{ with $all.Next . }}<span>← previous</span><a class="link-underline" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</div>
+    <div style="text-align:right">{{ with $all.Prev . }}<span>next →</span><a class="link-underline" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</div>
+  </div>
+</div>
+{{ end }}

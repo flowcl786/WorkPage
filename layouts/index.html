@@ -1,0 +1,58 @@
+{{ define "main" }}
+<section class="hero"><div class="wrap"><div class="hero__inner" id="about">
+  <span class="eyebrow">{{ .Site.Params.role }} · {{ .Site.Params.location }}</span>
+  <h1>{{ .Site.Params.author }}</h1>
+  <p class="hero__lead">{{ .Content }}</p>
+  <div class="bg-list" id="background">
+    <a class="bg-item" href="/experience/compal/"><strong>Software Engineer, Compal Electronics</strong><time>Dec 2023 – Feb 2025</time><span>Taipei · data pipeline, BIOS firmware</span></a>
+    <a class="bg-item" href="/education/msc/"><strong>Master's Degree in Computer Science &amp; Information Engineering</strong><time>2021 – 2023</time><span>National Dong Hwa University</span></a>
+    <a class="bg-item" href="/education/bsc/"><strong>Bachelor's Degree in Computer Science &amp; Information Engineering</strong><time>2017 – 2021</time><span>National Dong Hwa University</span></a>
+  </div>
+</div></div></section>
+
+{{ $projects := where (where .Site.RegularPages "Section" "projects") "Params.hidden" "!=" true }}
+{{ $projects = sort $projects "Params.order" }}
+{{ $featured := where $projects "Params.featured" true }}
+{{ $rest := where $projects "Params.featured" "!=" true }}
+<section class="section"><div class="wrap">
+  <div class="section__head"><h2>Selected projects</h2><a class="link-underline" href="/projects/">All projects →</a></div>
+  <div class="projects">
+    {{ range first 1 $featured }}
+    <a class="featured card-link" href="{{ .RelPermalink }}">
+      <div class="meta"><b>featured</b><span>{{ .Params.when }}</span><span>{{ delimit .Params.stack " · " }}</span></div>
+      <h3>{{ .Title }}</h3>
+      <p>{{ .Params.lede }}</p>
+    </a>
+    {{ end }}
+    <div class="plist">
+      {{ range $rest }}
+      <a class="row card-link" href="{{ .RelPermalink }}">
+        <div class="meta"><span>{{ .Params.when }}</span><span>{{ index .Params.stack 0 }}</span></div>
+        <h3>{{ .Title }}</h3>
+        <p>{{ .Params.lede | truncate 90 }}</p>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</div></section>
+
+{{ $posts := first 3 (where .Site.RegularPages "Section" "blog") }}
+{{ with $posts }}
+<section class="section"><div class="wrap">
+  <div class="section__head"><h2>Writing</h2><a class="link-underline" href="/blog/">All posts →</a></div>
+  <div class="writing">
+    {{ range . }}
+    <a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time><h3>{{ .Title }}</h3></a>
+    {{ end }}
+  </div>
+</div></section>
+{{ end }}
+
+<section class="section" id="contact"><div class="wrap">
+  <div class="section__head"><h2>Contact</h2></div>
+  <div class="contact-links">
+    <a class="link-underline" href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+    <a class="link-underline" href="{{ .Site.Params.github }}" rel="noopener">GitHub</a>
+  </div>
+</div></section>
+{{ end }}

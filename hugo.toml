@@ -1,0 +1,26 @@
+# HUGO_VERSION pinned in Cloudflare Pages: 0.164.0 (verified). Bump deliberately, not auto-latest.
+baseURL = "https://work.clairedaily.com/"
+locale = "en-gb"
+title = "Claire Liu"
+enableInlineShortcodes = true
+disableKinds = ["taxonomy", "term"]  # no tag archive pages yet; tags stay in front matter
+
+[params]
+  author = "Yi-Wen (Claire) Liu"
+  role = "Data Engineer"
+  location = "London"
+  email = "flowcl786@gmail.com"
+  linkedin = "https://www.linkedin.com/in/yiwen828"
+  github = "https://github.com/flowcl786"
+
+[markup.goldmark.renderer]
+  unsafe = true          # allow inline SVG/HTML in project bodies (our own content only)
+
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 2
+
+[taxonomies]
+  tag = "tags"
+
+[params.extra]

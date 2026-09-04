@@ -1,0 +1,27 @@
+<figure class="diagram">
+<svg class="dg" viewBox="0 0 660 250" role="img" aria-label="Pipeline: on each dev machine a build completes, a batch file calls a Python script that captures build time, CPU, RAM and owner and labels the project from the working-directory path, then uploads via Google Sheets API to a write-only raw sheet; Google Apps Script validates, routes, detects anomalies and emails alerts; management reads a separate dashboard.">
+  <rect class="lane" x="8" y="8" width="300" height="234" rx="3"/><text class="dim" x="20" y="26">dev machine × N</text>
+  <rect class="lane" x="332" y="8" width="320" height="234" rx="3"/><text class="dim" x="344" y="26">google cloud</text>
+  <rect class="box" x="24" y="44" width="130" height="30"/><text x="89" y="63" text-anchor="middle">build completes</text>
+  <path class="wire" d="M89 74 V92"/><polygon class="arrow" points="85,90 93,90 89,96"/>
+  <rect class="box" x="24" y="96" width="130" height="30"/><text x="89" y="115" text-anchor="middle">batch → python</text>
+  <path class="wire" d="M89 126 V144"/><polygon class="arrow" points="85,142 93,142 89,148"/>
+  <rect class="box box--hi" x="24" y="148" width="130" height="44"/>
+  <text x="89" y="166" text-anchor="middle">build time · cpu</text><text x="89" y="181" text-anchor="middle">ram · owner</text>
+  <text class="dim" x="170" y="160">project label =</text><text class="dim" x="170" y="173">working-dir path</text>
+  <path class="wire" d="M154 170 H228 V120 H340"/><polygon class="arrow" points="338,116 338,124 344,120"/>
+  <text class="dim" x="240" y="112">sheets api</text>
+  <rect class="box" x="346" y="104" width="110" height="32"/><text x="401" y="124" text-anchor="middle">raw sheet</text>
+  <text class="dim" x="401" y="150" text-anchor="middle">write-only</text>
+  <path class="wire" d="M456 120 H492"/><polygon class="arrow" points="490,116 490,124 496,120"/>
+  <rect class="box box--hi" x="498" y="92" width="130" height="56"/>
+  <text x="563" y="110" text-anchor="middle">apps script</text>
+  <text class="dim" x="563" y="125" text-anchor="middle">validate → route</text><text class="dim" x="563" y="138" text-anchor="middle">→ detect → alert</text>
+  <path class="wire" d="M563 148 V172"/><path class="wire" d="M563 172 H520 V182 M563 172 H606 V182"/>
+  <polygon class="arrow" points="516,180 524,180 520,186"/><polygon class="arrow" points="602,180 610,180 606,186"/>
+  <rect class="box" x="470" y="188" width="100" height="30"/><text x="520" y="207" text-anchor="middle">dashboard</text>
+  <rect class="box" x="580" y="188" width="70" height="30"/><text x="615" y="207" text-anchor="middle">email</text>
+  <text class="dim" x="520" y="234" text-anchor="middle">read-only, management</text>
+</svg>
+<figcaption>fig. 1 — two-layer architecture: raw ingestion is write-only via API; management reads a separate dashboard.</figcaption>
+</figure>
